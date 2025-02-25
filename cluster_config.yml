@@ -1,0 +1,33 @@
+__default__:
+  qsub: "qsub"
+  job_name: "snkjb_{rule}_{wildcards.sample}"
+  time: "60:00:00"
+  mem: "30G"
+  pe: "parallel"
+  threads: 20
+  o: "logs/{rule}.{wildcards.sample}.out"
+  e: "logs/{rule}.{wildcards.sample}.err"
+  join: "yes"
+  email: "svitlana.sushko@tuebingen.mpg.de"
+concat_all_telibs:
+  qsub: "qsub"
+  job_name: "snkjb_{rule}"
+  time: "60:00:00"
+  mem: "30G"
+  pe: "parallel"
+  threads: 20
+  o: "logs/{rule}.out"
+  e: "logs/{rule}.err"
+  join: "yes"
+  email: "svitlana.sushko@tuebingen.mpg.de"
+make_panTElib:
+  qsub: "qsub"
+  job_name: "snkjb_{rule}"
+  time: "60:00:00"
+  mem: "30G"
+  pe: "parallel"
+  threads: 20
+  o: "logs/{rule}.out"
+  e: "logs/{rule}.err"
+  join: "yes"
+  email: "svitlana.sushko@tuebingen.mpg.de"
