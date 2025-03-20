@@ -1,2 +1,3 @@
 logs/*
 .snakemake/*
+scripts_for_snakepipe/__pycache__/*
