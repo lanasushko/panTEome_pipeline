@@ -47,9 +47,9 @@ rule generate_EDTA_single_genome_TElib:
     threads: config["resources"]["threads"]
     params:
         directory=W("single_genome_EDTA/{sample}")
+    conda: "panTEome"
     shell:
         """
-        # touch {output.TElib} {output.intactlib}
         scripts_for_snakepipe/panTEome_generate_sg_libs.sh {input} {threads} {params.directory} > {log} 2>&1
         """
 
@@ -65,10 +65,9 @@ rule add_fullsize_LTRRTs:
     params:
         directory=W("single_genome_EDTA/{sample}"),
         cleanup=config['scripts']["cleanup_nested"]
+    conda: "panTEome"
     shell:
         """
-        source activate tools
-        # touch {output}
         python3 scripts_for_snakepipe/add_fullsizeLTRRTs.py {input.TElib} {input.intactlib} {params.directory} {params.cleanup} {threads} > {log} 2>&1
         """
 
@@ -84,17 +83,13 @@ rule EDTA_annotate:
     threads: config["resources"]["threads"]
     params:
         directory=W("single_genome_EDTA/{sample}")
+    conda: "panTEome"
     shell:
         """
-        # touch {output}
         scripts_for_snakepipe/panTEome_reannotate_from_sglib.sh {params.directory} {input.genome} {threads} > {log} 2>&1
         """
 
 ### panTE PIPELINE ###
-
-
-# rule remove_TE_families_overlapping_with_quality_CDS:  # ->>> to be added
-
 
 rule extract_min_n_fl_copies:
     input: 
@@ -108,9 +103,9 @@ rule extract_min_n_fl_copies:
     params: 
         min_fl_copy=config["params"]["min_fl_copy"],
         find_flTE=config['scripts']["find_flTE"]
+    conda: "panTEome"
     shell:
         """
-        source activate tools
         bash scripts_for_snakepipe/get_n_fl_copies.sh {input.RMout} {params.min_fl_copy} {params.find_flTE} > {log} 2>&1 
         """
 
@@ -132,9 +127,9 @@ rule make_panTElib:
     log:
         "logs/make_panTElib.log"
     threads: config["resources"]["threads"]
+    conda: "panTEome"
     shell:
         """
-        source activate tools 
         export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
         python3 scripts_for_snakepipe/make_panTElib.py --all_TElib {input.allTElib} --curatedlib {input.curatedlib} --threads {threads} > {log} 2>&1
         echo 'done'  >> {log} 2>&1
@@ -156,6 +151,7 @@ rule reannotate_from_panTElib:
     threads: config["resources"]["threads"]
     params:
         directory=W("single_genome_EDTA/{sample}")
+    conda: "panTEome"
     shell:
         """
         scripts_for_snakepipe/panTEome_reannotate_from_panTElib.sh {input.genome} {input.panTElib} {params.directory} {threads} > {log} 2>&1 

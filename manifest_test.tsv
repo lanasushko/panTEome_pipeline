@@ -1,5 +1,3 @@
 sample	genome_fa
-Bor-1_LZU_Chr1	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/test_genomes/Bor-1_LZU_Chr1.Chr_scaffolds.fa
-Ei-2_MPIBT_Chr1	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/test_genomes/Ei-2_MPIBT_Chr1.Chr_scaffolds.fa
-Got-22_LZU_Chr1	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/test_genomes/Got-22_LZU_Chr1.Chr_scaffolds.fa
-IP-Hom-0_MPIBT_Chr1	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/test_genomes/IP-Hom-0_MPIBT_Chr1.Chr_scaffolds.fa
+100001	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100001.Chr_scaffolds.fa
+100106	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100106.Chr_scaffolds.fa

@@ -18,7 +18,7 @@ name=$(basename $folder)
 # cp $name'.Chr_scaffolds.fa.mod.EDTA.TElib.fa' $name'.Chr_scaffolds.fa.mod.EDTA.final'
 
 ## 2 annotate genomes from their own EDTAlib
-source activate EDTA2_fromyml
+
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
 export BLASTDB_LMDB_MAP_SIZE=100000000
 

@@ -11,8 +11,8 @@ threads=$4
 # Internal variables
 name=$(basename $genome | cut -f1 -d'.')
 
-# activate EDTA environment and load prerequisites
-source activate EDTA2_fromyml
+# load EDTA prerequisites
+
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
 export BLASTDB_LMDB_MAP_SIZE=100000000
 
