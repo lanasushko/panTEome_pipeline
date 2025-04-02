@@ -10,6 +10,7 @@ threads=$4
 
 # Internal variables
 name=$(basename $genome | cut -f1 -d'.')
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # load EDTA prerequisites
 
@@ -18,7 +19,7 @@ export BLASTDB_LMDB_MAP_SIZE=100000000
 
 # run EDTA reannotation
 cd $workdir
-/ebio/abt6/ssushko/EDTA/EDTA.pl --genome $genome -t $threads --step final --anno 1 --curatedlib $panTElib
+perl $SCRIPT_DIR/EDTA/EDTA.pl --genome $genome --threads $threads --step final --anno 1 --curatedlib $panTElib
 
 # rename for pipeline streamlinness
 mv $name.Chr_scaffolds.fa.mod_divergence_plot.pdf $name.Chr_scaffolds.fa.mod_divergence_plot.panTEannot.pdf

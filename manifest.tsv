@@ -1,7 +1,6 @@
 sample	genome_fa
-85-3_1001g	/ebio/abt6_projects/panNLR-hifi/data/assemblies_v2/0_assemblies/85-3_1001g/85-3_1001g.Chr_scaffolds.fa
-11C1_MPIBT	/ebio/abt6_projects/panNLR-hifi/data/assemblies_v2/0_assemblies/11C1_MPIBT/11C1_MPIBT.Chr_scaffolds.fa
-14INRCT07_MPIBT	/ebio/abt6_projects/panNLR-hifi/data/assemblies_v2/0_assemblies/14INRCT07_MPIBT/14INRCT07_MPIBT.Chr_scaffolds.fa
-15INRCT09_MPIBT	/ebio/abt6_projects/panNLR-hifi/data/assemblies_v2/0_assemblies/15INRCT09_MPIBT/15INRCT09_MPIBT.Chr_scaffolds.fa
-35-1_1001g	/ebio/abt6_projects/panNLR-hifi/data/assemblies_v2/0_assemblies/35-1_1001g/35-1_1001g.Chr_scaffolds.fa
-85-3_1001g	/ebio/abt6_projects/panNLR-hifi/data/assemblies_v2/0_assemblies/85-3_1001g/85-3_1001g.Chr_scaffolds.fa
+100001	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100001.Chr_scaffolds.fa
+100106	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100106.Chr_scaffolds.fa
+100146	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100146.Chr_scaffolds.fa
+100211	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100211.Chr_scaffolds.fa
+100447	/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests/1001G_test_genomes/100447.Chr_scaffolds.fa

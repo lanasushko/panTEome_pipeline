@@ -115,7 +115,7 @@ rule concat_all_telibs:
     output:
         W("make_te_lib/allTEs.fa")
     shell:
-        "cat {input} > {output}"
+        "cat {input} > {output} && sleep 1"
 
 
 rule make_panTElib:

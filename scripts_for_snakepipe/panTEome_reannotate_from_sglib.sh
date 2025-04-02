@@ -5,6 +5,8 @@
 folder=$1
 genome=$2
 threads=$3
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 
 ## 1 move around and change names to adapt for EDTA annotation run
 cd $folder
@@ -22,7 +24,8 @@ name=$(basename $folder)
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
 export BLASTDB_LMDB_MAP_SIZE=100000000
 
-/ebio/abt6/ssushko/EDTA/EDTA.pl --genome $genome --overwrite 0 --step anno --threads $threads --anno 1
+# EDTA.pl --genome $genome --overwrite 0 --step anno --threads $threads --anno 1
+perl $SCRIPT_DIR/EDTA/EDTA_for_sg.pl --genome $genome --overwrite 0 --step final --curatedlib $name.Chr_scaffolds.fa.mod.EDTA.TElib.LTRupdated.fa.wgn.fa --threads $threads --anno 1
 
 mv $name'.Chr_scaffolds.fa.mod.EDTA.TEanno.gff3' $name'.Chr_scaffolds.fa.mod.EDTA.TEanno.sgannot.gff3'
 

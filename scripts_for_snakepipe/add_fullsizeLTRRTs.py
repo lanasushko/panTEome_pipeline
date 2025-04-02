@@ -123,9 +123,9 @@ def main():
     print(f"Updated TElib saved to {final_output}")
 
     # Move and rename for EDTA reannotation run
-    os.rename(EDTA_TElib_fa, f"{os.path.splitext(EDTA_TElib_fa)[0]}.originalsgEDTA.fa")
-    shutil.copy(final_output, f"{os.path.splitext(EDTA_TElib_fa)[0]}.fa")
-    shutil.copy(EDTA_TElib_fa, f"{gname}.Chr_scaffolds.fa.mod.EDTA.final")
+    # os.rename(EDTA_TElib_fa, f"{os.path.splitext(EDTA_TElib_fa)[0]}.originalsgEDTA.fa")
+    # shutil.copy(final_output, f"{os.path.splitext(EDTA_TElib_fa)[0]}.fa")
+    # shutil.copy(EDTA_TElib_fa, f"{gname}.Chr_scaffolds.fa.mod.EDTA.final")
 
     # Cleanup intermediate files
     os.remove(temp_ltr_file)
