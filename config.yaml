@@ -1,5 +1,5 @@
-MANIFEST: "manifest_test.tsv"
-WORK_DIR: "/tmp/global2/ssushko/TE_evolution/EDTA_reannot/1001G+_tests"
+MANIFEST: "manifest.rest.localrun.tsv"
+WORK_DIR: "/tmp/global2/ssushko/TE_evolution/1001Gp_TE_ANNOT/panTEome_v3_1001Gp/annotation"
 resources:
     threads: 20
 params:
@@ -7,9 +7,7 @@ params:
 scripts:
   cleanup_nested: "scripts_for_snakepipe/cleanup_nested.pl"
   find_flTE: "scripts_for_snakepipe/find_flTE.pl"
-conda_envs:
-  edta: "/tmp/global2/ssushko/conda/envs/EDTA2_fromyml"
 extra_datasets:
-  curatedlib: "/tmp/global2/ssushko/TE_evolution/EDTA_reannot/panTEome_v2/curatedlib/colcc-pantera_v2.1.fa"
+  curatedlib: "/tmp/global2/ssushko/TE_evolution/1001Gp_TE_ANNOT/curatedlib/colcc-pantera_v2.1.fa"
   trash_annot_dir: "/tmp/global2/ssushko/TE_evolution/EDTA_reannot/panTEome_v2/repeat_annot/TRASH_45S"
 
