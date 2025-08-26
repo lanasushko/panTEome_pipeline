@@ -15,5 +15,6 @@ snakemake --dry-run --cluster "qsub -cwd -w e -N {cluster.job_name} -l h_rt={clu
 ps aux | grep snakemake  # Find the process ID (PID)
 kill -9 <PID>  # Forcefully kill the Snakemake process
 qdel -u <username> # delete all user's jobs
+qstat -u $USER | awk '$5=="Eqw"{print $1}' | xargs qdel
 
 # run on chimi
