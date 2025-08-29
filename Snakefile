@@ -23,10 +23,10 @@ print(config["samples"])
 ### GENERAL RULE ###
 rule all:
     input:
-        # sglibs=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa"), sample=config["samples"].keys())
+        sglibs=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa"), sample=config["samples"].keys())
         # sglibs_updt=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa.LTRupdated.wgn.fa"), sample=config["samples"].keys())
         # libraries=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
-        annotations=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.sgannot.gff3"), sample=config["samples"].keys())
+        # annotations=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.sgannot.gff3"), sample=config["samples"].keys())
         # min3copy=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
         # allTEslib=W("make_te_lib/allTEs.fa")
         # panTElib=W("make_te_lib/panTElib.vsearch.centroids.fa")
