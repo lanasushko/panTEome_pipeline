@@ -23,15 +23,15 @@ print(config["samples"])
 ### GENERAL RULE ###
 rule all:
     input:
-        sglibs=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa"), sample=config["samples"].keys())
-        # sglibs_updt=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa.LTRupdated.wgn.fa"), sample=config["samples"].keys())
-        # libraries=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
-        # annotations=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.sgannot.gff3"), sample=config["samples"].keys())
-        # min3copy=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
+        sglibs=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.fa"), sample=config["samples"].keys())
+        # sglibs_updt=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.fa.LTRupdated.wgn.fa"), sample=config["samples"].keys())
+        # libraries=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
+        # annotations=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.sgannot.gff3"), sample=config["samples"].keys())
+        # min3copy=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
         # allTEslib=W("make_te_lib/allTEs.fa")
         # panTElib=W("make_te_lib/panTElib.vsearch.centroids.fa")
-        # panTE_reannot=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.panTEannot.gff3"), sample=config["samples"].keys())
-        # postprocessed_annot=expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.panTEannot.gff3.cleaned.gff"), sample=config["samples"].keys())
+        # panTE_reannot=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.panTEannot.gff3"), sample=config["samples"].keys())
+        # postprocessed_annot=expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.panTEannot.gff3.cleaned.gff"), sample=config["samples"].keys())
 ####################
 
 
@@ -40,8 +40,8 @@ rule generate_EDTA_single_genome_TElib:
     input:
         fasta=lambda wc: config["samples"][wc.sample]
     output:
-        TElib=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa"),
-        intactlib=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.intact.fa")
+        TElib=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.fa"),
+        intactlib=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.intact.fa")
     log: 
         "logs/{sample}_generate_EDTA_single_genome_TElib.log"
     threads: config["resources"]["threads"]
@@ -55,10 +55,10 @@ rule generate_EDTA_single_genome_TElib:
 
 rule add_fullsize_LTRRTs:
     input:
-        TElib=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa"),
-        intactlib=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.intact.fa")
+        TElib=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.fa"),
+        intactlib=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.intact.fa")
     output:
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.LTRupdated.fa.wgn.fa")
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.LTRupdated.fa.wgn.fa")
     log: 
         "logs/{sample}_add_fullsize_LTRRTs.log"
     threads: config["resources"]["threads"]
@@ -73,11 +73,11 @@ rule add_fullsize_LTRRTs:
 
 rule EDTA_annotate:
     input:
-        tes_updated=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.LTRupdated.fa.wgn.fa"),
+        tes_updated=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.LTRupdated.fa.wgn.fa"),
         genome=lambda wc: config["samples"][wc.sample]
     output:
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.sgannot.gff3"),
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.anno/{sample}.scaffolds_contigs.fa.mod.EDTA.RM.out")
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.sgannot.gff3"),
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.anno/{sample}.Chr_scaffolds.fa.mod.EDTA.RM.out")
     log:
         "logs/{sample}_EDTA_annotate.log"
     threads: config["resources"]["threads"]
@@ -93,11 +93,11 @@ rule EDTA_annotate:
 
 rule extract_min_n_fl_copies:
     input: 
-        gff=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.sgannot.gff3"),
-        RMout=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.anno/{sample}.scaffolds_contigs.fa.mod.EDTA.RM.out")
+        gff=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.sgannot.gff3"),
+        RMout=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.anno/{sample}.Chr_scaffolds.fa.mod.EDTA.RM.out")
     output:
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.fa.keep.list"),
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.mincopyfiltered.fa")
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.fa.keep.list"),
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.mincopyfiltered.fa")
     log:
         "logs/{sample}_extr_minnflcop.log"
     params: 
@@ -111,7 +111,7 @@ rule extract_min_n_fl_copies:
 
 rule concat_all_telibs:
     input:
-        expand(W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
+        expand(W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TElib.mincopyfiltered.fa"), sample=config["samples"].keys())
     output:
         W("make_te_lib/allTEs.fa")
     shell:
@@ -140,12 +140,12 @@ rule make_panTElib:
 
 rule reannotate_from_panTElib:
     input:
-        gff=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.sgannot.gff3"),
+        gff=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.sgannot.gff3"),
         genome=lambda wc: config["samples"][wc.sample],
         panTElib=W("make_te_lib/panTElib.vsearch.centroids.fa")
     output:
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.panTEannot.gff3"),
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.anno/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.bed")
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.panTEannot.gff3"),
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.anno/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.bed")
     log:
         "logs/{sample}_EDTA_reannotate_from_panTElib.log"
     threads: config["resources"]["threads"]
@@ -159,11 +159,11 @@ rule reannotate_from_panTElib:
 
 rule postprocess_panTE_annotation:
     input:
-        gff=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.panTEannot.gff3"),
-        bed=W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.anno/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.bed"),
+        gff=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.panTEannot.gff3"),
+        bed=W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.anno/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.bed"),
         trashgff=lambda wildcards: f"{config['extra_datasets']['trash_annot_dir']}/{wildcards.sample}.TRASH.45S.gff"
     output:
-        W("single_genome_EDTA/{sample}/{sample}.scaffolds_contigs.fa.mod.EDTA.TEanno.panTEannot.gff3.cleaned.gff")
+        W("single_genome_EDTA/{sample}/{sample}.Chr_scaffolds.fa.mod.EDTA.TEanno.panTEannot.gff3.cleaned.gff")
     log:
         "logs/{sample}_postprocess_final.log"
     threads: config["resources"]["threads"]

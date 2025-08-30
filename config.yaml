@@ -1,5 +1,5 @@
 MANIFEST: "manifest.tsv"
-WORK_DIR: "/tmp/global2/ssushko/TE_evolution/1001Gp_TE_ANNOT/panTEome_v3_1001Gp/annotation"
+WORK_DIR: "/tmp/global2/ssushko/TE_evolution/1001Gp_TE_ANNOT/panTEome_v3_1001Gp/annotation_chr_s"
 resources:
     threads: 20
 params:
