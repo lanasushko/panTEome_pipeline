@@ -1,10 +1,10 @@
 __default__:
   qsub: "qsub"
   job_name: "snkjb_{rule}_{wildcards.sample}"
-  time: "23:50:00"
+  time: "10:00:00"
   mem: "20G"
   pe: "parallel"
-  threads: 20
+  threads: 1
   o: "logs/{rule}.{wildcards.sample}.out"
   e: "logs/{rule}.{wildcards.sample}.err"
   join: "yes"
